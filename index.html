@@ -9,22 +9,47 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #0a0a0f; --bg-card: #12121a; --text: #f0f0f5; --text-muted: #8a8a9a;
-            --accent: #a855f7; --accent2: #ec4899; --border: #1e1e2e;
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a2e;
+            --text: #f0f0f5;
+            --text-muted: #8a8a9a;
+            --accent: #a855f7;
+            --accent2: #ec4899;
+            --accent3: #6366f1;
+            --border: #1e1e2e;
             --gradient: linear-gradient(135deg, #a855f7, #ec4899);
+            --gradient2: linear-gradient(135deg, #6366f1, #a855f7);
             --glow: 0 0 40px rgba(168, 85, 247, 0.15);
         }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
         .container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 16px 0; }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,15,0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         nav .logo { font-weight: 800; font-size: 18px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         nav .nav-links { display: flex; gap: 24px; }
         nav .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
         nav .nav-links a:hover { color: var(--text); }
+
+        /* ===== HERO ===== */
         .hero { padding: 160px 0 80px; position: relative; }
         .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%); pointer-events: none; }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); padding: 6px 16px; border-radius: 50px; font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 28px; }
+        .hero-badge span { font-size: 14px; }
         .hero h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; letter-spacing: -2px; }
         .hero h1 .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero .subtitle { font-size: 20px; color: var(--text-muted); font-weight: 400; margin-bottom: 24px; max-width: 600px; line-height: 1.7; }
@@ -34,15 +59,22 @@
         .btn-gradient:hover { box-shadow: 0 8px 30px rgba(168,85,247,0.3); transform: translateY(-2px); }
         .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ===== STATS ===== */
         .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 80px; }
         .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; transition: all 0.3s; }
         .stat:hover { border-color: rgba(168,85,247,0.3); box-shadow: var(--glow); transform: translateY(-4px); }
         .stat-value { font-size: 32px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
         .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+        /* ===== SECTIONS ===== */
         section { padding: 60px 0; }
         .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
         .section-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); }
         .section-title { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+        .section-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; margin-top: -20px; }
+
+        /* ===== PROJECT CARDS ===== */
         .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.3s; position: relative; overflow: hidden; }
         .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient); opacity: 0; transition: opacity 0.3s; }
@@ -55,6 +87,8 @@
         .project-tech span { font-size: 12px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 6px; font-weight: 500; border: 1px solid var(--border); }
         .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 600; transition: gap 0.2s; }
         .project-link:hover { gap: 10px; }
+
+        /* ===== TIMELINE ===== */
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); }
         .timeline-item { position: relative; margin-bottom: 32px; }
@@ -64,59 +98,114 @@
         .timeline-place { font-size: 14px; font-weight: 600; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
         .timeline-date { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
         .timeline-item p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        /* ===== SKILLS ===== */
         .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; transition: all 0.3s; }
         .skill-card:hover { border-color: rgba(168,85,247,0.3); transform: translateY(-2px); }
         .skill-card .skill-icon { font-size: 28px; margin-bottom: 12px; }
         .skill-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
         .skill-card p { font-size: 12px; color: var(--text-muted); }
+
+        /* ===== ENGAGEMENT ===== */
         .engagement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .engagement-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; transition: all 0.3s; }
         .engagement-card:hover { border-color: rgba(168,85,247,0.3); box-shadow: var(--glow); }
         .engagement-card .emoji { font-size: 32px; margin-bottom: 16px; }
         .engagement-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
         .engagement-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-        .interests-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 40px 0; }
-        .interest-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border); padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--text-muted); transition: all 0.3s; }
-        .interest-tag:hover { border-color: var(--accent); color: var(--text); }
+
+        /* ===== CENTRES D'INTÉRÊT ===== */
+        .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .interest-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+        .interest-card:hover { border-color: rgba(168,85,247,0.3); box-shadow: var(--glow); transform: translateY(-2px); }
+        .interest-card .interest-icon { font-size: 36px; margin-bottom: 14px; display: block; }
+        .interest-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .interest-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+        .interest-card .interest-highlight { display: inline-block; margin-top: 12px; padding: 5px 12px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); border-radius: 50px; font-size: 12px; font-weight: 600; color: var(--accent); }
+
+        /* ===== FOOTER ===== */
         footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; margin-top: 40px; }
         .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 20px; }
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: var(--accent); }
         footer .copy { font-size: 13px; color: var(--text-muted); }
-        @media (max-width: 768px) { .stats-row { grid-template-columns: repeat(2, 1fr); } .project-grid { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .engagement-grid { grid-template-columns: 1fr; } nav .nav-links { display: none; } }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) { .stats-row { grid-template-columns: repeat(2, 1fr); } .project-grid { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .engagement-grid { grid-template-columns: 1fr; } .interests-grid { grid-template-columns: 1fr; } nav .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 32px; letter-spacing: -1px; } .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; } .stat { padding: 20px 14px; } .skills-grid { grid-template-columns: 1fr; } }
+
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-badge, .hero h1, .hero .subtitle, .hero-cta, .stats-row, section, footer { animation: fadeUp 0.6s ease-out both; }
-        .hero h1 { animation-delay: 0.1s; } .hero .subtitle { animation-delay: 0.2s; } .hero-cta { animation-delay: 0.3s; } .stats-row { animation-delay: 0.4s; }
+        .hero h1 { animation-delay: 0.1s; }
+        .hero .subtitle { animation-delay: 0.2s; }
+        .hero-cta { animation-delay: 0.3s; }
+        .stats-row { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <nav><div class="container"><div class="logo">LT</div><div class="nav-links"><a href="#projets">Projets</a><a href="#parcours">Parcours</a><a href="#formation">Formation</a><a href="#engagement">Engagement</a><a href="https://www.linkedin.com/in/lihou-teboul-80b25b32b" target="_blank">LinkedIn ↗</a></div></div></nav>
+    <nav>
+        <div class="container">
+            <div class="logo">LT</div>
+            <div class="nav-links">
+                <a href="#projets">Projets</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#formation">Formation</a>
+                <a href="#engagement">Engagement</a>
+                <a href="https://www.linkedin.com/in/lihou-teboul-80b25b32b" target="_blank">LinkedIn ↗</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <header class="hero">
-            <div class="hero-badge"><span>✨</span> Entrepreneur &amp; Étudiant</div>
+            <div class="hero-badge">
+                <span>✨</span> Entrepreneur &amp; Étudiant
+            </div>
             <h1>Lihou <span class="gradient-text">Teboul</span></h1>
-            <p class="subtitle">17 ans, je crée des produits numériques depuis mes 15 ans. Passionné par l'entrepreneuriat, la finance et la tech — je construis des solutions concrètes à des problèmes réels.</p>
+            <p class="subtitle">
+                17 ans, je crée des produits numériques depuis mes 15 ans. Passionné par l'entrepreneuriat, la finance et la tech — je construis des solutions concrètes à des problèmes réels.
+            </p>
             <div class="hero-cta">
                 <a href="mailto:lihouteboul92300@gmail.com" class="btn btn-gradient">✉ Me contacter</a>
                 <a href="https://www.linkedin.com/in/lihou-teboul-80b25b32b" target="_blank" class="btn btn-outline">LinkedIn →</a>
                 <a href="tel:+33769049718" class="btn btn-outline">+33 7 69 04 97 18</a>
             </div>
         </header>
+
+        <!-- Stats -->
         <div class="stats-row">
             <div class="stat"><div class="stat-value">2</div><div class="stat-label">Startups lancées</div></div>
             <div class="stat"><div class="stat-value">29</div><div class="stat-label">Pays visités</div></div>
             <div class="stat"><div class="stat-value">730</div><div class="stat-label">SAT Math /800</div></div>
             <div class="stat"><div class="stat-value">3</div><div class="stat-label">Langues parlées</div></div>
         </div>
-        <section id="projets"><div class="section-header"><div class="section-icon">🚀</div><h2 class="section-title">Mes projets</h2></div>
+
+        <!-- Projets -->
+        <section id="projets">
+            <div class="section-header"><div class="section-icon">🚀</div><h2 class="section-title">Mes projets</h2></div>
             <div class="project-grid">
-                <div class="project-card"><span class="project-tag">EdTech</span><h3>Prof en Ligne</h3><p>Plateforme de soutien scolaire 24/7 connectant élèves et profs pour des sessions dès 20 min et moins de 10€. Conçue de zéro à 15 ans, financée sur fonds propres, testée avec 25+ utilisateurs.</p><div class="project-tech"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Figma</span><span>IA</span></div><a href="https://profenligne.vercel.app" target="_blank" class="project-link">Voir le projet →</a></div>
-                <div class="project-card"><span class="project-tag">Marketplace · IA</span><h3>ListOnce</h3><p>Outil de cross-listing alimenté par l'IA : publie une annonce une seule fois, elle est automatiquement optimisée et diffusée sur Le Bon Coin, Vinted et Facebook Marketplace.</p><div class="project-tech"><span>React</span><span>TypeScript</span><span>GPT</span><span>Vite</span></div><a href="https://listonce-sand.vercel.app" target="_blank" class="project-link">Voir le projet →</a></div>
+                <div class="project-card">
+                    <span class="project-tag">EdTech</span>
+                    <h3>Prof en Ligne</h3>
+                    <p>Plateforme de soutien scolaire 24/7 connectant élèves et profs pour des sessions dès 20 min et moins de 10€. Conçue de zéro à 15 ans, financée sur fonds propres, testée avec 25+ utilisateurs.</p>
+                    <div class="project-tech"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Figma</span><span>IA</span></div>
+                    <a href="https://profenligne.vercel.app" target="_blank" class="project-link">Voir le projet →</a>
+                </div>
+                <div class="project-card">
+                    <span class="project-tag">Marketplace · IA</span>
+                    <h3>ListOnce</h3>
+                    <p>Outil de cross-listing alimenté par l'IA : publie une annonce une seule fois, elle est automatiquement optimisée et diffusée sur Le Bon Coin, Vinted et Facebook Marketplace.</p>
+                    <div class="project-tech"><span>React</span><span>TypeScript</span><span>GPT</span><span>Vite</span></div>
+                    <a href="https://listonce-sand.vercel.app" target="_blank" class="project-link">Voir le projet →</a>
+                </div>
             </div>
         </section>
-        <section id="parcours"><div class="section-header"><div class="section-icon">💼</div><h2 class="section-title">Parcours</h2></div>
+
+        <!-- Parcours -->
+        <section id="parcours">
+            <div class="section-header"><div class="section-icon">💼</div><h2 class="section-title">Parcours</h2></div>
             <div class="timeline">
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Founder — Prof en Ligne</h3><div class="timeline-place">Startup EdTech</div><div class="timeline-date">2024 – Présent</div><p>Analyse concurrentielle, business model, recrutement d'un designer, prototypage Figma, modèles Excel de rentabilité, intégration IA. Tout construit seul, à 15 ans.</p></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Stage — Finance</h3><div class="timeline-place">Amundi Asset Management</div><div class="timeline-date">Juin 2024</div><p>Modélisation Excel, recherche financière, rapports de performance sectorielle et évaluation des risques pour les gestionnaires de portefeuille.</p></div>
@@ -125,30 +214,59 @@
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Programme d'anglais</h3><div class="timeline-place">ESL Education — Malte</div><div class="timeline-date">2022</div><p>Immersion linguistique pour renforcer l'anglais académique et les compétences interculturelles.</p></div>
             </div>
         </section>
-        <section id="formation"><div class="section-header"><div class="section-icon">🎓</div><h2 class="section-title">Formation</h2></div>
+
+        <!-- Formation -->
+        <section id="formation">
+            <div class="section-header"><div class="section-icon">🎓</div><h2 class="section-title">Formation</h2></div>
             <div class="timeline">
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Terminale Générale</h3><div class="timeline-place">Lycée Saint-Ursule — Maths &amp; SES</div><div class="timeline-date">2023 – 2026</div><p>Bac Français : Écrit 14/20, Oral 17/20. Baccalauréat en cours, spécialités Mathématiques et Sciences Économiques et Sociales.</p></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Dual Diploma</h3><div class="timeline-place">Academica International Studies</div><div class="timeline-date">2022 – 2027</div><p>High School Diploma américain en parallèle. Honor Roll (toutes les matières avec A). SAT : 1240 total, 730/800 en maths (top 2%).</p></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><h3>Certification Google Ads</h3><div class="timeline-place">Coursera</div><div class="timeline-date">2024</div><p>Formation complète en marketing digital et publicité en ligne certifiée Google.</p></div>
             </div>
         </section>
-        <section><div class="section-header"><div class="section-icon">⚡</div><h2 class="section-title">Compétences</h2></div>
+
+        <!-- Compétences -->
+        <section>
+            <div class="section-header"><div class="section-icon">⚡</div><h2 class="section-title">Compétences</h2></div>
             <div class="skills-grid">
                 <div class="skill-card"><div class="skill-icon">🌍</div><h4>Langues</h4><p>Français natif · Anglais courant · Espagnol intermédiaire</p></div>
                 <div class="skill-card"><div class="skill-icon">💻</div><h4>Tech &amp; Digital</h4><p>React · TypeScript · Figma · Supabase · No-code · IA</p></div>
                 <div class="skill-card"><div class="skill-icon">📊</div><h4>Business</h4><p>Excel · Google Ads · Bloomberg · Canva · PowerPoint</p></div>
             </div>
         </section>
-        <section id="engagement"><div class="section-header"><div class="section-icon">❤️</div><h2 class="section-title">Engagement</h2></div>
+
+        <!-- Engagement -->
+        <section id="engagement">
+            <div class="section-header"><div class="section-icon">❤️</div><h2 class="section-title">Engagement</h2></div>
             <div class="engagement-grid">
                 <div class="engagement-card"><div class="emoji">🎵</div><h3>Cantos — Chant en maison de retraite</h3><p>Chaque dimanche, je chante auprès de personnes âgées isolées avec le groupe Cantos. Une expérience qui m'a profondément marqué et qui nourrit ma conviction que la technologie doit rapprocher les gens, pas les éloigner.</p></div>
                 <div class="engagement-card"><div class="emoji">📚</div><h3>Aide aux devoirs</h3><p>Accompagnement régulier d'enfants et de collégiens dans leurs devoirs. Patience, pédagogie, et la satisfaction de voir quelqu'un comprendre — c'est aussi ce qui m'a inspiré Prof en Ligne.</p></div>
             </div>
         </section>
-        <div class="interests-bar">
-            <span class="interest-tag">🎾 Padel &amp; Tennis</span><span class="interest-tag">🪁 Kitesurf</span><span class="interest-tag">♟️ Échecs</span><span class="interest-tag">✈️ 29 pays</span><span class="interest-tag">📈 Marchés financiers</span><span class="interest-tag">💡 Investissement</span>
-        </div>
-        <footer><div class="footer-links"><a href="mailto:lihouteboul92300@gmail.com">Email</a><a href="https://www.linkedin.com/in/lihou-teboul-80b25b32b" target="_blank">LinkedIn</a><a href="https://profenligne.vercel.app" target="_blank">Prof en Ligne</a><a href="https://listonce-sand.vercel.app" target="_blank">ListOnce</a></div><p class="copy">Lihou Teboul · 2026</p></footer>
+
+        <!-- Centres d'intérêt -->
+        <section class="fadeUp" id="interets">
+            <div class="section-header"><div class="section-icon">🎯</div><h2 class="section-title">Centres d'intérêt</h2></div>
+            <p class="section-sub">Ce qui m'anime au quotidien, en dehors des cours et des projets.</p>
+            <div class="interests-grid">
+                <div class="interest-card fadeUp"><span class="interest-icon">♟️</span><h3>Échecs</h3><p>Passionné depuis le collège — j'aime la dimension stratégique, l'anticipation et la gestion du temps sous pression. C'est un entraînement mental qui m'aide autant en négociation qu'en prise de décision.</p><span class="interest-highlight">Stratégie &amp; réflexion</span></div>
+                <div class="interest-card fadeUp"><span class="interest-icon">📈</span><h3>Finance &amp; investissement</h3><p>Je suis les marchés financiers depuis mes 15 ans. Stage chez Amundi, utilisation du Bloomberg Terminal, et investissement personnel en actions et ETF. Comprendre l'économie réelle à travers les marchés, c'est ce qui me fascine.</p><span class="interest-highlight">Bloomberg Terminal · Amundi</span></div>
+                <div class="interest-card fadeUp"><span class="interest-icon">✈️</span><h3>Voyages — 29 pays</h3><p>De Malte pour un séjour linguistique à l'Asie du Sud-Est en sac à dos, chaque voyage m'a ouvert l'esprit. Découvrir des cultures, m'adapter à l'inconnu et revenir avec un regard neuf — c'est ma façon d'apprendre.</p><span class="interest-highlight">29 pays · 4 continents</span></div>
+                <div class="interest-card fadeUp"><span class="interest-icon">🎾</span><h3>Padel &amp; Tennis</h3><p>Sports de raquette depuis l'enfance. Le padel est devenu mon terrain de jeu favori — l'esprit d'équipe du double, la réactivité, et l'adrénaline des points décisifs. Je joue plusieurs fois par semaine.</p><span class="interest-highlight">Compétition &amp; esprit d'équipe</span></div>
+                <div class="interest-card fadeUp"><span class="interest-icon">🪁</span><h3>Kitesurf</h3><p>Sensations fortes et connexion avec la nature. Le kitesurf m'a appris la patience — attendre le bon vent, gérer sa peur, et se lancer. Une métaphore assez juste de l'entrepreneuriat, finalement.</p><span class="interest-highlight">Sports extrêmes</span></div>
+                <div class="interest-card fadeUp"><span class="interest-icon">🌍</span><h3>Ouverture internationale</h3><p>Dual Diploma franco-américain, SAT à 1240 (top 2% en maths), anglais courant, espagnol intermédiaire. Mon objectif : construire ma carrière à l'intersection de la France, de l'Europe et du monde.</p><span class="interest-highlight">Trilingue · SAT 1240</span></div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="mailto:lihouteboul92300@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/lihou-teboul-80b25b32b" target="_blank">LinkedIn</a>
+                <a href="https://profenligne.vercel.app" target="_blank">Prof en Ligne</a>
+                <a href="https://listonce-sand.vercel.app" target="_blank">ListOnce</a>
+            </div>
+            <p class="copy">Lihou Teboul · 2026</p>
+        </footer>
     </div>
 </body>
 </html>
